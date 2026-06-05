@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Energy Estimate & PDF Generator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased min-h-screen py-10 px-4">
+
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+        <div class="p-8 border-b border-gray-100 bg-gradient-to-r from-amber-50 to-orange-50 text-center">
+            <h1 class="text-3xl font-extrabold text-gray-900 tracking-tight mb-2">Solar Energy Estimate Form</h1>
+            <p class="text-gray-600 max-w-md mx-auto text-sm">Please complete this form to receive an estimate for installing a solar energy system at your property.</p>
+        </div>
+
+        <form id="solarForm" class="p-8 space-y-8">
+            
+            <div>
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>Customer Information
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">First Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="firstName" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="John">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Last Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="lastName" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="Doe">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Phone Number <span class="text-red-500">*</span></label>
+                        <input type="tel" id="phone" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="(555) 000-0000">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Email Address <span class="text-red-500">*</span></label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="john@example.com">
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Street Address <span class="text-red-500">*</span></label>
+                        <input type="text" id="street" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="123 Solar Way">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">City <span class="text-red-500">*</span></label>
+                        <input type="text" id="city" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="Los Angeles">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">State / Country <span class="text-red-500">*</span></label>
+                        <input type="text" id="state" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="CA, USA">
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>Property Details
+                </h2>
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Roof Type <span class="text-red-500">*</span></label>
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
+                                <input type="radio" name="roofType" value="Flat" checked class="w-4 h-4 text-amber-500 accent-amber-500">
+                                <span class="text-sm font-medium text-gray-700">Flat</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
+                                <input type="radio" name="roofType" value="Sloped (Pitched)" class="w-4 h-4 text-amber-500 accent-amber-500">
+                                <span class="text-sm font-medium text-gray-700">Sloped</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
+                                <input type="radio" name="roofType" value="Metal" class="w-4 h-4 text-amber-500 accent-amber-500">
+                                <span class="text-sm font-medium text-gray-700">Metal</span>
+                            </label>
+                            <label class="flex items-center gap-3 p-3 border border-gray-200 rounded-xl cursor-pointer hover:bg-gray-50 transition-all">
+                                <input type="radio" name="roofType" value="Tile/Shingle" class="w-4 h-4 text-amber-500 accent-amber-500">
+                                <span class="text-sm font-medium text-gray-700">Tile/Shingle</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Roof Size (sq. ft.) <span class="text-red-500">*</span></label>
+                            <input type="number" id="roofSize" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="2500">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Roof Orientation <span class="text-red-500">*</span></label>
+                            <select id="roofOrientation" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none bg-white">
+                                <option value="South">South (Optimal)</option>
+                                <option value="West">West</option>
+                                <option value="East">East</option>
+                                <option value="North">North</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Shading Concerns? <span class="text-red-500">*</span></label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="shading" value="Yes" class="w-4 h-4 accent-amber-500"> <span class="text-sm">Yes</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="shading" value="No" checked class="w-4 h-4 accent-amber-500"> <span class="text-sm">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>Energy & System Needs
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Avg Monthly Usage (kWh) <span class="text-red-500">*</span></label>
+                        <input type="number" id="energyUsage" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="900">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Utility Provider <span class="text-red-500">*</span></label>
+                        <input type="text" id="utility" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="PG&E / Grid Co.">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Desired System Size (kW) <span class="text-red-500">*</span></label>
+                        <input type="number" step="0.1" id="systemSize" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="6.5">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">Battery Storage Included? <span class="text-red-500">*</span></label>
+                        <div class="flex gap-4 pt-1">
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="battery" value="Yes" class="w-4 h-4 accent-amber-500"> <span class="text-sm">Yes (Backup)</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer">
+                                <input type="radio" name="battery" value="No" checked class="w-4 h-4 accent-amber-500"> <span class="text-sm">No</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="border-gray-100">
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <span class="w-1.5 h-6 bg-amber-500 rounded-full"></span>Budget Information
+                </h2>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-1">Estimated Budget Allocated ($) <span class="text-red-500">*</span></label>
+                    <input type="number" id="budget" required class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-amber-500 focus:border-amber-500 transition-all outline-none" placeholder="15000">
+                </div>
+            </div>
+
+            <div class="pt-4">
+                <button type="button" onclick="generatePDF()" class="w-full bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-bold py-4 px-6 rounded-xl shadow-lg transform active:scale-[0.99] transition-all text-center tracking-wide uppercase text-sm">
+                    Generate PDF Quotation
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="hidden">
+        <div id="pdfTemplate" class="p-12 bg-white text-gray-800 space-y-8" style="width: 790px;">
+            <div class="flex justify-between items-start border-b-2 border-amber-500 pb-6">
+                <div>
+                    <h1 class="text-3xl font-black text-gray-900 tracking-tight">SOLAR ENERGY QUOTATION</h1>
+                    <p class="text-sm text-gray-500 mt-1">Generated Automatically via SolarEstimate System</p>
+                </div>
+                <div class="text-right text-xs text-gray-500">
+                    <p class="font-bold text-gray-800 text-sm">Solar Solutions Inc.</p>
+                    <p>Standard Date: <span id="pdfDate"></span></p>
+                    <p>Quote Status: Comprehensive Estimate</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 text-sm">
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <h3 class="font-bold text-amber-600 uppercase text-xs tracking-wider mb-2">Prepared For:</h3>
+                    <p class="font-bold text-base text-gray-900" id="pdfClientName"></p>
+                    <p class="text-gray-600 mt-1" id="pdfClientAddress"></p>
+                    <p class="text-gray-600" id="pdfClientContact"></p>
+                </div>
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-100">
+                    <h3 class="font-bold text-amber-600 uppercase text-xs tracking-wider mb-2">System Profile:</h3>
+                    <table class="w-full text-xs space-y-1">
+                        <tr><td class="text-gray-500 py-0.5">Target Size:</td><td class="font-bold text-right text-gray-800" id="pdfStatSize"></td></tr>
+                        <tr><td class="text-gray-500 py-0.5">Roof Alignment:</td><td class="font-bold text-right text-gray-800" id="pdfStatOrient"></td></tr>
+                        <tr><td class="text-gray-500 py-0.5">Utility Sync:</td><td class="font-bold text-right text-gray-800" id="pdfStatUtility"></td></tr>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-sm font-bold text-gray-900 uppercase tracking-wider mb-3">Technical Specifications Summary</h3>
+                <table class="w-full text-left border-collapse text-sm">
+                    <thead>
+                        <tr class="bg-gray-900 text-white font-semibold text-xs uppercase tracking-wider">
+                            <th class="p-3 rounded-l-lg">Parameter Description</th>
+                            <th class="p-3 text-right rounded-r-lg">Configured Assessment Detail</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-100">
+                        <tr>
+                            <td class="p-3 font-medium text-gray-700">Roof Structural Matrix</td>
+                            <td class="p-3 text-right text-gray-900" id="pdfTableRoof"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium text-gray-700">Total Deployable Surface Area</td>
+                            <td class="p-3 text-right text-gray-900" id="pdfTableSize"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium text-gray-700">Shading Interference Hazard Index</td>
+                            <td class="p-3 text-right text-gray-900" id="pdfTableShading"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium text-gray-700">Baseline Monthly Load Evaluation</td>
+                            <td class="p-3 text-right text-gray-900" id="pdfTableUsage"></td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-medium text-gray-700">Local Grid Interconnection Provider</td>
+                            <td class="p-3 text-right text-gray-900" id="pdfTableUtility"></td>
+                        </tr>
+                        <tr class="bg-amber-50/50">
+                            <td class="p-3 font-semibold text-amber-900">Dedicated Battery Energy Storage Module (BESS)</td>
+                            <td class="p-3 text-right font-bold text-amber-900" id="pdfTableBattery"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="border-t-2 border-gray-100 pt-6">
+                <div class="w-1/2 ml-auto space-y-2 text-sm">
+                    <div class="flex justify-between text-gray-500">
+                        <span>Target Capital Budget Allocation:</span>
+                        <span id="pdfFinBudget" class="font-semibold text-gray-800"></span>
+                    </div>
+                    <div class="flex justify-between text-gray-500">
+                        <span>Estimated Gross System Cost:</span>
+                        <span id="pdfFinGross" class="font-semibold text-gray-800"></span>
+                    </div>
+                    <div class="flex justify-between text-amber-600 bg-amber-50 p-2 rounded-lg font-medium text-xs">
+                        <span>Estimated Federal Incentives (30% Tax Credit Offset):</span>
+                        <span id="pdfFinTaxCredit"></span>
+                    </div>
+                    <div class="flex justify-between text-base font-bold text-gray-900 pt-2 border-t border-gray-200">
+                        <span>Net Projected Cost Framework:</span>
+                        <span id="pdfFinNet" class="text-orange-600 text-lg"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-12 text-center text-[11px] text-gray-400 space-y-1">
+                <p>This document constitutes an algorithmic project simulation framework baseline configuration matrix profile.</p>
+                <p>Final binding contract values are subject to rigorous in-person physical site analysis verifications.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function generatePDF() {
+            const form = document.getElementById('solarForm');
+            
+            // Trigger browser form-validation check before processing
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Map and parse Form inputs into dynamic memory variables
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const street = document.getElementById('street').value;
+            const city = document.getElementById('city').value;
+            const state = document.getElementById('state').value;
+            
+            const roofType = document.querySelector('input[name="roofType"]:checked').value;
+            const roofSize = document.getElementById('roofSize').value;
+            const roofOrientation = document.getElementById('roofOrientation').value;
+            const shading = document.querySelector('input[name="shading"]:checked').value;
+            
+            const energyUsage = document.getElementById('energyUsage').value;
+            const utility = document.getElementById('utility').value;
+            const systemSize = parseFloat(document.getElementById('systemSize').value);
+            const battery = document.querySelector('input[name="battery"]:checked').value;
+            
+            const budget = parseFloat(document.getElementById('budget').value);
+
+            // Calculate solar estimate metrics (Mock pricing algorithms based on global industry standards)
+            const standardCostPerWatt = 2.85; 
+            let grossSystemCost = (systemSize * 1000) * standardCostPerWatt;
+            if (battery === "Yes") grossSystemCost += 9500; // Average residential battery pack integration surcharge
+            
+            const taxCreditOffset = grossSystemCost * 0.30; // 30% Residential Clean Energy Credit
+            const netProjectCost = grossSystemCost - taxCreditOffset;
+
+            // Bind Calculated Values into HTML Generation Template Object Elements
+            document.getElementById('pdfDate').innerText = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+            document.getElementById('pdfClientName').innerText = `${firstName} ${lastName}`;
+            document.getElementById('pdfClientAddress').innerText = `${street}, ${city}, ${state}`;
+            document.getElementById('pdfClientContact').innerText = `Phone: ${phone} | Email: ${email}`;
+            
+            document.getElementById('pdfStatSize').innerText = `${systemSize} kW`;
+            document.getElementById('pdfStatOrient').innerText = roofOrientation;
+            document.getElementById('pdfStatUtility').innerText = utility;
+
+            document.getElementById('pdfTableRoof').innerText = roofType;
+            document.getElementById('pdfTableSize').innerText = `${roofSize} Sq. Ft.`;
+            document.getElementById('pdfTableShading').innerText = shading;
+            document.getElementById('pdfTableUsage').innerText = `${energyUsage} kWh / mo`;
+            document.getElementById('pdfTableUtility').innerText = utility;
+            document.getElementById('pdfTableBattery').innerText = battery === "Yes" ? "Included (Lithium-Ion Backup Unit)" : "None Selected";
+
+            document.getElementById('pdfFinBudget').innerText = `$${budget.toLocaleString()}`;
+            document.getElementById('pdfFinGross').innerText = `$${grossSystemCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('pdfFinTaxCredit').innerText = `-$${taxCreditOffset.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            document.getElementById('pdfFinNet').innerText = `$${netProjectCost.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+
+            // Initialize rendering parameters for the html2pdf execution pipeline
+            const element = document.getElementById('pdfTemplate');
+            const fileOptions = {
+                margin:       0.2,
+                filename:     `Solar_Quotation_${lastName}.pdf`,
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2, useCORS: true },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+            // Process structure translation safely bypassing screen hide classes
+            html2pdf().from(element).set(fileOptions).save();
+        }
+    </script>
+</body>
+</html>
