@@ -51,6 +51,20 @@
 #5. Removing Items from a List
 
 #remove()
-my_list=['apple','banana','cherry']
-my_list.remove('banana')
-print(my_list)
+# my_list=['apple','banana','cherry']
+# my_list.remove('banana')
+# print(my_list)
+
+
+
+# 6. List Comprehensions 
+
+# numbers = [1,2,3,4,5,6,7,8,9,10]
+# newlist = [num**2 for num in numbers if num % 2 == 0]
+# print(newlist)
+
+
+# my_list = [x**2 for x in range(1, 11)]
+# print(my_list)
+
+

@@ -1,0 +1,6 @@
+Hello
+Welcome to Python file handling
+Appended text.
+Appended text.
+Hello
+Welcome to Python file handling
