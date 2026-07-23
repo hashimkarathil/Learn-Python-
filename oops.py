@@ -169,18 +169,43 @@ class Car:
 
 # 3.   Loose Coupling
 
-class Company:
-    def __init__(self, cname, location):
-         self.cname = cname
-         self.location = location
-class Employee:
-    def __init__(self, name, position, comp): 
-        self.name = name
-        self.position = position
-        self.comp = comp
-    def display_employee(self):
-        print(f"Name: {self.name}, Position: {self.position}, Company: {self.comp.cname}, Location: {self.comp.location}")
+# class Company:
+#     def __init__(self, cname, location):
+#          self.cname = cname
+#          self.location = location
+# class Employee:
+#     def __init__(self, name, position, comp): 
+#         self.name = name
+#         self.position = position
+#         self.comp = comp
+#     def display_employee(self):
+#         print(f"Name: {self.name}, Position: {self.position}, Company: {self.comp.cname}, Location: {self.comp.location}")
 
-c1 = Company("ABC Corp", "New York")
-emp = Employee("John Doe", "Manager", c1) #injected
-emp.display_employee()
+# c1 = Company("ABC Corp", "New York")
+# emp = Employee("John Doe", "Manager", c1) #injected
+# emp.display_employee()
+
+
+
+
+# ..............Encapulation.................................
+
+
+# class Employee:
+#     def __init__(self,name,salary):
+#         self.name = name    #public attribute
+#         self.__salary = salary   # private attribute
+    
+#     def display_employee(self):
+#         print(f"Name: {self.name}, Salary: {self.__salary}")
+    
+#     def update_salary(self, new_salary):
+#         self.__salary += new_salary
+
+
+# emp = Employee("john", 50000)
+# emp.display_employee()
+
+
+# emp.update_salary(10000)
+# emp.display_employee()
